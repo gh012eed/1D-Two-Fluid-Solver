@@ -1,0 +1,5 @@
+plot_function(density,'$\bar{n}$')
+plot_function(u_e,'$\bar{u}_e$')
+plot_function(u_ion,'$\bar{u}_i$')
+plot_function(E_field,'$\bar{E}$')
+plot_function(A,'$\bar{A}$')
