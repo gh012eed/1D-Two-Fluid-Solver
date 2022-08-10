@@ -4,7 +4,8 @@ h=2*pi/2^p;
 ld=1/2;%try 1/128 will take >an hour 
 dt=h*ld;
 z=(-pi+h):h:pi;%grid points excluding z=0
-t=0:dt:30;
+tf=30;
+t=0:dt:tf;
 N=length(z);
 M=length(t);
 [Z,T]=meshgrid(z,t);
@@ -48,6 +49,7 @@ for n=1:M-1
     E_field(n+1,1)=-Rei0*A0/A(n,1)-(u_e(n,2)^2-u_e(n,N)^2)/(4*h)-Te/(2*h)*(log(density(n,2))-log(density(n,N)));
     E_field(n+1,2:N-1)=-Rei0*A0./A(n,2:N-1)-(u_e(n,3:N).^2-u_e(n,1:N-2).^2)/(4*h)-Te/(2*h)*(log(density(n,3:N))-log(density(n,1:N-2)));
     E_field(n+1,N)=-Rei0*A0/A(n,N)-(u_e(n,1)^2-u_e(n,N-1)^2)/(4*h)-Te/(2*h)*(log(density(n,1))-log(density(n,N-1)));
+    
 end
 
 

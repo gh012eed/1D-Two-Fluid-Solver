@@ -1,10 +1,10 @@
-function plot_function(variable,y_label,tf)
+function plot_function(variable,y_label)
     p=8;
     h=2*pi/2^p;
     ld=1/2;%try 1/128 will take >an hour 
     dt=h*ld;
     z=(-pi+h):h:pi;%grid points excluding z=0
-    t=0:dt:tf;
+    t=0:dt:100;
 
 
     M=length(t);
