@@ -11,4 +11,4 @@ E=m*u/(q*t);
 kTe=m*u*u;
 kTe_eV=kTe/q;%in eV
 F=q*E;
-
+frequency=1/t;
