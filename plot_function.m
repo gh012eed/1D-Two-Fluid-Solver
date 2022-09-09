@@ -1,4 +1,8 @@
-function plot_function(variable,y_label,tf)
+function plot_function(variable,y_label,tf,limy,y_lim)
+%variable: a MxN matrix.  data for plotting
+%y_label: label of y axis
+%tf: finial time from solver.m
+%limy:if True. set limy to y_lim parameter
     p=8;
     h=2*pi/2^p;
     ld=1/2;%try 1/128 will take >an hour 
@@ -17,25 +21,37 @@ function plot_function(variable,y_label,tf)
     l=4.5;
     w=9;
     fs=18;%fontsize
-
-    T1=round(M/3);
-    T2=round(2*M/3);
-    T3=round(3*M/3);
+    
+    T_list=round(1:M/3:M+1);
+    T_list(end)=M;
+    %T_list=[3*M/3];
     lw=1.5;
     %plot with SI units
-    z_units=1;%cm
+    %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
+    all_line_styles={'--','-',':','-.'};
     figure
-    plot(z(z_start:z_end)*z_units,variable(1,z_start:z_end),'-','linewidth',lw)
-    hold on
-    plot(z(z_start:z_end)*z_units,variable(T1,z_start:z_end),'--','linewidth',lw)
-    hold on
-    plot(z(z_start:z_end)*z_units,variable(T2,z_start:z_end),':','linewidth',lw)
-    hold on
-    plot(z(z_start:z_end)*z_units,variable(T3,z_start:z_end),'-.','linewidth',lw)
-
+    temp_count=1;
+    legendInfo=cell(length(T_list),1);
+    for T=T_list        
+        plot(z(z_start:z_end),variable(T,z_start:z_end),'linewidth',lw,...
+            'linestyle',all_line_styles{mod(temp_count,4)+1})
+        hold on
+        legendInfo{temp_count}=sprintf('$\\overline{t}$=%0.2f',(T-1)*dt); 
+        temp_count=temp_count+1;
+    end
+    hold off
+    if limy
+        ylim(y_lim)
+    end
     ylabel(y_label,'Interpreter','latex')
     xlabel('$\bar{z}$','Interpreter','latex')
-    leg1=legend('$\overline{t}=0$',sprintf('$\\overline{t}$=%0.2f',(T1-1)*dt),sprintf('$\\overline{t}$=%0.2f',(T2-1)*dt),sprintf('$\\overline{t}$=%0.2f',(T3-1)*dt),'Location','southeast','NumColumns',2);
+    leg1=legend(legendInfo,'Location','southeast','NumColumns',2);
+%     leg1=legend('$\overline{t}=0$',sprintf('$\\overline{t}$=%0.2f',(T1-1)*dt),...
+%     sprintf('$\\overline{t}$=%0.2f',(T2-1)*dt),...
+%     sprintf('$\\overline{t}$=%0.2f',(T3-1)*dt),...
+%     sprintf('$\\overline{t}$=%0.2f',(T4-1)*dt),...
+%     sprintf('$\\overline{t}$=%0.2f',(T5-1)*dt),...
+%     'Location','southeast','NumColumns',2);
     set(leg1,'Interpreter','latex');
     set(leg1,'FontSize',14);
     fig=gcf;
@@ -43,4 +59,5 @@ function plot_function(variable,y_label,tf)
     fig.Position=[1,1,w,l];
     a = get(gca,'XTickLabel');
     set(gca,'XTickLabel',a,'fontsize',fs);
+
 end
