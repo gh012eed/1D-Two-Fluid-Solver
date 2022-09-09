@@ -47,9 +47,9 @@ for n=1:M-1
     u_ion(n+1,2:N-1)=u_ion(n,2:N-1)+dt/mi*(E_field(n,2:N-1)+Rei0*A0./A(n,2:N-1))-dt/(4*h)*(u_ion(n,3:N).^2-u_ion(n,1:N-2).^2);
     u_ion(n+1,N)=u_ion(n,N)+dt/mi*(E_field(n,N)+Rei0*A0/A(n,N))-dt/(4*h)*(u_ion(n,1)^2-u_ion(n,N-1)^2);
     u_e(n+1,:)=-I./(density(n+1,:).*A(n+1,:));
-    E_field(n+1,1)=-Rei0*A0/A(n,1)-(u_e(n,2)^2-u_e(n,N)^2)/(4*h)-Te/(2*h)*(log(density(n,2))-log(density(n,N)));
-    E_field(n+1,2:N-1)=-Rei0*A0./A(n,2:N-1)-(u_e(n,3:N).^2-u_e(n,1:N-2).^2)/(4*h)-Te/(2*h)*(log(density(n,3:N))-log(density(n,1:N-2)));
-    E_field(n+1,N)=-Rei0*A0/A(n,N)-(u_e(n,1)^2-u_e(n,N-1)^2)/(4*h)-Te/(2*h)*(log(density(n,1))-log(density(n,N-1)));
+    E_field(n+1,1)=-Rei0*A0/A(n+1,1)-(u_e(n+1,2)^2-u_e(n+1,N)^2)/(4*h)-Te/(2*h)*(log(density(n+1,2))-log(density(n+1,N)));
+    E_field(n+1,2:N-1)=-Rei0*A0./A(n+1,2:N-1)-(u_e(n+1,3:N).^2-u_e(n+1,1:N-2).^2)/(4*h)-Te/(2*h)*(log(density(n+1,3:N))-log(density(n+1,1:N-2)));
+    E_field(n+1,N)=-Rei0*A0/A(n+1,N)-(u_e(n+1,1)^2-u_e(n+1,N-1)^2)/(4*h)-Te/(2*h)*(log(density(n+1,1))-log(density(n+1,N-1)));
     
 end
 
