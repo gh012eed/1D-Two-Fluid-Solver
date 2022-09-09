@@ -22,9 +22,9 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     w=9;
     fs=18;%fontsize
     
-    %T_list=round(1:M:M+1);
-    %T_list(end)=M;
-    T_list=[2*M/3];
+    T_list=round(1:M/3:M+1);
+    T_list(end)=M;
+    %T_list=[3*M/3];
     lw=1.5;
     %plot with SI units
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};

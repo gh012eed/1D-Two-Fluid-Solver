@@ -53,7 +53,6 @@ for n=1:M-1
     E_field(n+1,1)=Er(n+1,1)-(u_e(n+1,2)^2-u_e(n+1,N)^2)/(4*h)-Te(n+1,1)/(2*h)*(log(density(n+1,2))-log(density(n+1,N)));
     E_field(n+1,2:N-1)=Er(n+1,2:N-1)-(u_e(n+1,3:N).^2-u_e(n+1,1:N-2).^2)/(4*h)-Te(n+1,2:N-1)/(2*h).*(log(density(n+1,3:N))-log(density(n+1,1:N-2)));
     E_field(n+1,N)=Er(n+1,N)-(u_e(n+1,1)^2-u_e(n+1,N-1)^2)/(4*h)-Te(n+1,N)/(2*h)*(log(density(n+1,1))-log(density(n+1,N-1)));
-    
 end
 % 
 
