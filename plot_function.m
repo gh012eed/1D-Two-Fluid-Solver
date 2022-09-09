@@ -1,4 +1,8 @@
-function plot_function(variable,y_label,tf,limy)
+function plot_function(variable,y_label,tf,limy,y_lim)
+%variable: a MxN matrix.  data for plotting
+%y_label: label of y axis
+%tf: finial time from solver.m
+%limy:if True. set limy to y_lim parameter
     p=8;
     h=2*pi/2^p;
     ld=1/2;%try 1/128 will take >an hour 
@@ -18,12 +22,13 @@ function plot_function(variable,y_label,tf,limy)
     w=9;
     fs=18;%fontsize
     
-    T_list=round(1:M/3:M+1);
-    T_list(end)=M;
+    %T_list=round(1:M:M+1);
+    %T_list(end)=M;
+    T_list=[2*M/3];
     lw=1.5;
     %plot with SI units
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
-    all_line_styles={'-','--',':','-.'};
+    all_line_styles={'--','-',':','-.'};
     figure
     temp_count=1;
     legendInfo=cell(length(T_list),1);
@@ -36,7 +41,7 @@ function plot_function(variable,y_label,tf,limy)
     end
     hold off
     if limy
-        ylim([2,3])
+        ylim(y_lim)
     end
     ylabel(y_label,'Interpreter','latex')
     xlabel('$\bar{z}$','Interpreter','latex')
