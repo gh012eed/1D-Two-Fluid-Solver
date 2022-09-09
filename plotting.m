@@ -1,5 +1,5 @@
-plot_function(density,'$\bar{n}$',tf,true)
+plot_function(density,'$\bar{n}$',tf,false)
 plot_function(-u_e,'$|\bar{u}_e|$',tf,false)
 plot_function(u_ion,'$\bar{u}_i$',tf,false)
-plot_function(E_field,'$\bar{E}$',tf,false)
+plot_function(E_field,'$\bar{E}$',tf,true)
 plot_function(A,'$\bar{A}$',tf,false)

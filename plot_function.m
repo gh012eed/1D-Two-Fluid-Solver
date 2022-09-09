@@ -17,7 +17,9 @@ function plot_function(variable,y_label,tf,limy)
     l=4.5;
     w=9;
     fs=18;%fontsize
-    T_list=round(1:M/10:M);
+    
+    T_list=round(1:M/3:M+1);
+    T_list(end)=M;
     lw=1.5;
     %plot with SI units
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
@@ -34,7 +36,7 @@ function plot_function(variable,y_label,tf,limy)
     end
     hold off
     if limy
-        ylim([0.7,0.85])
+        ylim([2,3])
     end
     ylabel(y_label,'Interpreter','latex')
     xlabel('$\bar{z}$','Interpreter','latex')
