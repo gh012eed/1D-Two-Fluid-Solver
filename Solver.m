@@ -4,7 +4,7 @@ h=2*pi/2^p;
 ld=1/2;%try 1/128 will take >an hour 
 dt=h*ld;
 z=(-pi+h):h:pi;%grid points excluding z=0
-tf=30;
+tf=150;
 t=0:dt:tf;
 N=length(z);
 M=length(t);
@@ -17,7 +17,7 @@ I=0.8;
 A0=1;
 Te0=0.8;
 %Te=Te0*(1+0*exp(T/30));%constant
-Te=Te0*exp(T/10);%increasing temperature
+Te=Te0*exp(T/50);%increasing temperature
 n0=0.8;
 Rei0=-30;
 epsilon=0.05;%amplitude
