@@ -4,7 +4,7 @@ h=2*pi/2^p;
 ld=1/2;
 dt=h*ld;
 z=(-pi+h):h:pi;%excluding z=-pi (periodic boundary condition)
-tf=150;
+tf=120;
 t=0:dt:tf;
 N=length(z);
 M=length(t);
@@ -54,7 +54,15 @@ for n=1:M-1
     E_field(n+1,2:N-1)=Er(n+1,2:N-1)-(u_e(n+1,3:N).^2-u_e(n+1,1:N-2).^2)/(4*h)-Te(n+1,2:N-1)/(2*h).*(log(density(n+1,3:N))-log(density(n+1,1:N-2)));
     E_field(n+1,N)=Er(n+1,N)-(u_e(n+1,1)^2-u_e(n+1,N-1)^2)/(4*h)-Te(n+1,N)/(2*h)*(log(density(n+1,1))-log(density(n+1,N-1)));
 end
-% 
+
+%Temperature electric field
+E_T=zeros(M,N);
+E_T(:,1)=E_field(:,1)-Er(:,1)+(u_e(:,2).^2-u_e(:,N).^2)/(4*h);
+E_T(:,2:N-1)=E_field(:,2:N-1)-Er(:,2:N-1)+(u_e(:,3:N).^2-u_e(:,1:N-2).^2)/(4*h);
+E_T(:,N)=E_field(:,N)-Er(:,N)+(u_e(:,1).^2-u_e(:,N-1).^2)/(4*h);
+%bidirectional electric field
+E_B=zeros(M,N);
+E_B=E_field-Er;
 
 %calculate potential using trapezoidal rule numerical integration
 %setting phi to be zero at z=Nh;
