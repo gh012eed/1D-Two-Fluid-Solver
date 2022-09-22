@@ -19,14 +19,13 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     %z_end=N;
     %figure size
     l=4.5;
-    w=9;
-    fs=18;%fontsize
+    w=l*3;
+    fs=20;%fontsize
     
     T_list=round(1:M/3:M+1);
     T_list(end)=M;
-    %T_list=[3*M/3];
-    lw=1.5;
-    %plot with SI units
+    %T_list=[M];
+    lw=2;
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
     all_line_styles={'--','-',':','-.'};
     figure
@@ -43,21 +42,15 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     if limy
         ylim(y_lim)
     end
-    ylabel(y_label,'Interpreter','latex')
-    xlabel('$\bar{z}$','Interpreter','latex')
+
     leg1=legend(legendInfo,'Location','southeast','NumColumns',2);
-%     leg1=legend('$\overline{t}=0$',sprintf('$\\overline{t}$=%0.2f',(T1-1)*dt),...
-%     sprintf('$\\overline{t}$=%0.2f',(T2-1)*dt),...
-%     sprintf('$\\overline{t}$=%0.2f',(T3-1)*dt),...
-%     sprintf('$\\overline{t}$=%0.2f',(T4-1)*dt),...
-%     sprintf('$\\overline{t}$=%0.2f',(T5-1)*dt),...
-%     'Location','southeast','NumColumns',2);
     set(leg1,'Interpreter','latex');
-    set(leg1,'FontSize',14);
+    set(leg1,'FontSize',fs+4);
     fig=gcf;
     fig.Units='inches';
     fig.Position=[1,1,w,l];
-    a = get(gca,'XTickLabel');
-    set(gca,'XTickLabel',a,'fontsize',fs);
-
+    ax=gca;
+    ax.FontSize = fs;
+    ylabel(y_label,'Interpreter','latex','fontsize',fs+18)
+    xlabel('$\bar{z}$','Interpreter','latex','fontsize',fs+18)
 end
