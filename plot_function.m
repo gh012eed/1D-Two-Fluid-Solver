@@ -19,21 +19,22 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     %z_end=N;
     %figure size
     l=4.5;
-    w=l*3;
-    fs=20;%fontsize
+    w=l*2.5;
+    fs=30;%fontsize
     
     T_list=round(1:M/3:M+1);
     T_list(end)=M;
     %T_list=[M];
-    lw=2;
+    lw=2.5;
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
-    all_line_styles={'--','-',':','-.'};
+    %all_line_styles={'--','-',':','-.'};
     figure
     temp_count=1;
     legendInfo=cell(length(T_list),1);
     for T=T_list        
         plot(z(z_start:z_end),variable(T,z_start:z_end),'linewidth',lw,...
-            'linestyle',all_line_styles{mod(temp_count,4)+1})
+            'linestyle',"-")
+        %'marker',all_marks{mod(temp_count,4)+1},'markersize',10
         hold on
         legendInfo{temp_count}=sprintf('$\\overline{t}$=%0.2f',(T-1)*dt); 
         temp_count=temp_count+1;
@@ -43,7 +44,7 @@ function plot_function(variable,y_label,tf,limy,y_lim)
         ylim(y_lim)
     end
 
-    leg1=legend(legendInfo,'Location','southeast','NumColumns',2);
+    leg1=legend(legendInfo,'Location','northoutside','NumColumns',4);
     set(leg1,'Interpreter','latex');
     set(leg1,'FontSize',fs+4);
     fig=gcf;
