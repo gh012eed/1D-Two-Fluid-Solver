@@ -8,7 +8,10 @@ x_data=T(:,1);
 y_data=abs(max_ue-u0);
 f=fit(x_data,y_data,'exp1')
 plot(u_e(1,z_start:z_end))
+fs=30
 figure
 plot(f,x_data,y_data)
-%ylim([0,2])
+ylabel('$\Delta \bar{u}_e$','Interpreter','latex','fontsize',fs+18)
+xlabel('$\bar{t}$','Interpreter','latex','fontsize',fs+18)
+%ylim([0,1])
 legend("data","fit")
