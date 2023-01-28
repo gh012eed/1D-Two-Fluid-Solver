@@ -4,26 +4,26 @@ h=2*pi/2^p;
 ld=1/2;
 dt=h*ld;
 z=(-pi+h):h:pi;%excluding z=-pi (periodic boundary condition)
-tf=20;
+tf=10;
 t=0:dt:tf;
 N=length(z);
 M=length(t);
 [Z,T]=meshgrid(z,t);
 %parameters
 mi=70000;
-tauRT=1000;
+tauRT=80;
 kbar=2*pi;
-I=1;
-A0=1;%initial average area
+I=0.7;%current
+A0=0.2;%initial area at constricted region
 Te0=1/14;
-Te=Te0*(1+0*T);%constant
+Te=Te0*(1+0*T);%constant Temperature for now
 %Te=Te0*exp(T/50);%increasing temperature
 n0=1;%initial constant density
-Rei0=-30;
-epsilon=0.1;%amplitude
+u0=(I/(A0*n0));%initial electron drfit velocity before perturbation
+Rei0=-350;%collisional drag force
+epsilon=0.1;%amplitude of small perturbation
 A=A0*(1-epsilon*exp(T/tauRT).*cos(kbar*Z));%harmonic area perturbation
-
-gamma=kbar*ue0*sqrt(1/mi);%growth rate of instability at choked region
+gamma=kbar*u0*sqrt(1/mi);%approximate growth rate of instability at choked region
 tau_gamma=1/gamma;%initial growth time of instability
 %resistive electric field
 Er=-Rei0*(A0./A).*(Te0^(3/2)./Te.^(3/2));
@@ -33,12 +33,12 @@ u_e=zeros(M,N);%to store numerical solution for electron velocity
 u_ion=zeros(M,N);%to store numerical solution for ion velocity
 %%initial condition for u_ion and density%%
 density_0=n0*ones(1,N);
-density_0=density_0-epsilon*n0*cos(kbar*z);%harmonic perturbation
+%density_0=density_0-epsilon*n0*cos(kbar*z);%harmonic perturbation
 u_ion_0=zeros(1,N);
 density(1,:)=density_0;
 u_ion(1,:)=u_ion_0;
 u_e(1,:)=-I./(density(1,:).*A(1,:));
-ue0=max(-1*u_e(1,:));
+ue0=max(-1*u_e(1,:));%initial electron drift at constrited region
 E_field(1,1)=Er(1,1)-(u_e(1,2)^2-u_e(1,N)^2)/(4*h)-Te(1,1)/(2*h)*(log(density(1,2))-log(density(1,N)));
 E_field(1,2:N-1)=Er(1,2:N-1)-(u_e(1,3:N).^2-u_e(1,1:N-2).^2)/(4*h)-Te(1,2:N-1)/(2*h).*(log(density(1,3:N))-log(density(1,1:N-2)));
 E_field(1,N)=Er(1,N)-(u_e(1,1)^2-u_e(1,N-1)^2)/(4*h)-Te(1,N)/(2*h)*(log(density(1,1))-log(density(1,N-1)));
