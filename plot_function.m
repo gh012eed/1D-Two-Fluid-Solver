@@ -13,12 +13,12 @@ function plot_function(variable,y_label,tf,limy,y_lim)
 
     M=length(t);
     kbar=2*pi;
-    z_start=round((-2*pi/(3*kbar)+pi)/h); %corresponding to z=-2pi/3k
+    z_start=round((-2*pi/(3*kbar)+pi)/h); %corresponding to z=-2pi/3k 
     z_end=round((2*pi/(3*kbar)+pi)/h);%corresponding to z=2pi/3k
     %z_start=1;
     %z_end=N;
     %figure size
-    l=4.5;
+    l=6;
     w=l*2.5;
     fs=30;%fontsize
     
@@ -27,14 +27,13 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     %T_list=[M];
     lw=2.5;
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
-    %all_line_styles={'--','-',':','-.'};
+    all_line_styles={'--','-',':','-.'};
     figure
     temp_count=1;
     legendInfo=cell(length(T_list),1);
     for T=T_list        
         plot(z(z_start:z_end),variable(T,z_start:z_end),'linewidth',lw,...
-            'linestyle',"-")
-        %'marker',all_marks{mod(temp_count,4)+1},'markersize',10
+            'linestyle',all_line_styles{mod(temp_count,4)+1})
         hold on
         legendInfo{temp_count}=sprintf('$\\overline{t}$=%0.2f',(T-1)*dt); 
         temp_count=temp_count+1;
@@ -44,7 +43,7 @@ function plot_function(variable,y_label,tf,limy,y_lim)
         ylim(y_lim)
     end
 
-    leg1=legend(legendInfo,'Location','northoutside','NumColumns',4);
+    leg1=legend(legendInfo,'Location','eastoutside','NumColumns',1);
     set(leg1,'Interpreter','latex');
     set(leg1,'FontSize',fs+4);
     fig=gcf;
