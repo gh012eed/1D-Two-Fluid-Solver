@@ -12,9 +12,10 @@ function plot_function(variable,y_label,tf,limy,y_lim)
 
 
     M=length(t);
+    N=length(z);
     kbar=2*pi;
-    z_start=round((-2*pi/(3*kbar)+pi)/h); %corresponding to z=-2pi/3k 
-    z_end=round((2*pi/(3*kbar)+pi)/h);%corresponding to z=2pi/3k
+    z_start=round((-4*pi/(3*kbar)+pi)/h); %corresponding to z=-2pi/3k 
+    z_end=round((4*pi/(3*kbar)+pi)/h);%corresponding to z=2pi/3k
     %z_start=1;
     %z_end=N;
     %figure size
@@ -24,7 +25,7 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     
     T_list=round(1:M/3:M+1);
     T_list(end)=M;
-    %T_list=[M];
+    %T_list=[1];
     lw=2.5;
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
     all_line_styles={'--','-',':','-.'};
