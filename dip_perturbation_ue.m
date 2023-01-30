@@ -20,12 +20,10 @@ Te=Te0*(1+0*T);%constant Temperature for now
 %Te=Te0*exp(T/50);%increasing temperature
 n0=1;%initial constant density
 u0=(I/(A0*n0));%initial electron drfit velocity before perturbation
-Rei0=-25;
-epsilon=0.9;%amplitude of small perturbation
+Rei0=-2500;
+epsilon=0.9;%amplitude of area constriction. (need significant constriction to trigger instability)
 %A=A0*(1-epsilon*exp(T/tauRT).*cos(kbar*Z));%harmonic area perturbation
 A=A0*(1-epsilon*exp(T/tauRT).*sech(kbar*Z));%dip perturbation
-gamma=kbar*u0*sqrt(1/mi);%approximate growth rate of instability at choked region
-tau_gamma=1/gamma;%initial growth time of instability
 %resistive electric field
 Er=-Rei0*(A0./A).*(Te0^(3/2)./Te.^(3/2));
 density=ones(M,N);%to store numerical solution for volume density (first index is time, second index is space)
@@ -40,9 +38,10 @@ density(1,:)=density_0;
 u_ion(1,:)=u_ion_0;
 u_e(1,:)=-I./(density(1,:).*A(1,:));
 ue0=max(-1*u_e(1,:));%initial electron drift at constrited region
-E_field(1,1)=Er(1,1)-(u_e(1,2)^2-u_e(1,N)^2)/(4*h)-Te(1,1)/(2*h)*(log(density(1,2))-log(density(1,N)));
-E_field(1,2:N-1)=Er(1,2:N-1)-(u_e(1,3:N).^2-u_e(1,1:N-2).^2)/(4*h)-Te(1,2:N-1)/(2*h).*(log(density(1,3:N))-log(density(1,1:N-2)));
-E_field(1,N)=Er(1,N)-(u_e(1,1)^2-u_e(1,N-1)^2)/(4*h)-Te(1,N)/(2*h)*(log(density(1,1))-log(density(1,N-1)));
+
+gamma=kbar*ue0*sqrt(1/mi);%approximate growth rate of instability at choked region
+tau_gamma=1/gamma;%initial growth time of instability
+
 %%boundary condition is periodic
 
 
