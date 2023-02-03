@@ -33,5 +33,5 @@ ax=gca;
 ax.FontSize = fs;
 ylabel('$\Delta \bar{u}_e$','Interpreter','latex','fontsize',fs+18)
 xlabel('$\bar{t}$','Interpreter','latex','fontsize',fs+18)
-ylim([1,5])
+ylim([0,7])
 legend("Numerical data","Linear theory",'fontsize',fs)
