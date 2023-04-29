@@ -25,7 +25,7 @@ function plot_function(variable,y_label,tf,limy,y_lim)
     
     T_list=round(1:M/3:M+1);
     T_list(end)=M;
-    %T_list=[1];
+    %T_list=[1];%only plot initial
     lw=2.5;
     %all_marks = {'o','+','*','.','x','s','d','^','v','>','<','p','h'};
     all_line_styles={'--','-',':','-.'};

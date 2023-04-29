@@ -5,6 +5,7 @@ I=100000;
 q=1.60217663e-19;
 m=9.1093837e-31;
 mp=1.67e-27;%proton mass
+mi=40*mp;
 Aref=z^2;
 uref=I/(Aref*n*q);
 tref=z/uref;
