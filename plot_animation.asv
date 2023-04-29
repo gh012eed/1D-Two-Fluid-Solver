@@ -1,0 +1,7 @@
+for t=round(1:M/3:M+1)
+    
+    plot_function_single_time(density,'$\bar{n}$',t,true,[0.7,1.1])
+    formatSpec = "density_%d.jpg";
+    saveas(gcf,sprintf(formatSpec,t))
+end
+
