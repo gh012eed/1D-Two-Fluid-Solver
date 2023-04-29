@@ -21,7 +21,7 @@ function plot_function_single_time(variable,y_label,t_in,limy,y_lim)
 
     lw=2.5;
     temp_count=1;
-    plot(z(z_start:z_end),variable(t_in,z_start:z_end),'linewidth',lw,'color','magenta')
+    plot(z(z_start:z_end),variable(t_in,z_start:z_end),'linewidth',lw,'color','black')
     legendInfo{temp_count}=sprintf('$\\overline{t}$=%0.2f',(t_in-1)*dt); 
     if limy
         ylim(y_lim)
