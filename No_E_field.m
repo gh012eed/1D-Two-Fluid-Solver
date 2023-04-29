@@ -4,7 +4,7 @@ h=2*pi/2^p;
 ld=1/2;
 dt=h*ld;
 z=(-pi+h):h:pi;%excluding z=-pi (periodic boundary condition)
-tf=6;
+tf=3;
 t=0:dt:tf;
 N=length(z);
 M=length(t);
@@ -20,7 +20,7 @@ Te=Te0*(1+0*T);%constant Temperature for now
 %Te=Te0*exp(T/50);%increasing temperature
 n0=1;%initial constant density
 u0=(I/(A0*n0));%initial electron drfit velocity before perturbation
-epsilon=0.9;%amplitude of area constriction. (need significant constriction to trigger instability)
+epsilon=15/16;%amplitude of area constriction. (need significant constriction to trigger instability)
 %A=A0*(1-epsilon*exp(T/tauRT).*cos(kbar*Z));%harmonic area perturbation
 A=A0*(1-epsilon*exp(T/tauRT).*sech(kbar*Z));%dip perturbation
 density=ones(M,N);%to store numerical solution for volume density (first index is time, second index is space)
